@@ -1,0 +1,5 @@
+name: FreiheitPlugin
+version: '0.1-BETA'
+main: me.wv3ntly.freiheitPlugin.FreiheitPlugin
+api-version: '1.21'
+load: POSTWORLD
