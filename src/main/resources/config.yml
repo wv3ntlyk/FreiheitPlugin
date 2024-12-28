@@ -1,0 +1,9 @@
+world: "world"
+border:
+  initialSize: 12
+  increment: 12
+  maxDays: 12
+  transitionTime: 30
+  waitTime: 1
+  centerX: 0.0
+  centerZ: 0.0
