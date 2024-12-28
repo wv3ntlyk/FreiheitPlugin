@@ -1,9 +1,9 @@
 name: FreiheitPlugin
-version: '0.1-BETA'
+version: '0.2-BETA'
 main: me.wv3ntly.freiheitPlugin.FreiheitPlugin
 api-version: '1.21'
 load: POSTWORLD
 commands:
-  worldbarrier:
-    description: Manage the world border
-    usage: /worldbarrier [set|setCenter|setWaitTime|setMaxDays|setIncrement|setTransitionTime|debug] <arguments>
+  freedom:
+    description: Execute debug actions or restore plugin settings
+    usage: /freedom [debug|restore|render]

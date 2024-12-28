@@ -1,25 +1,53 @@
 package me.wv3ntly.freiheitPlugin
 
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
+
 
 class FreiheitPlugin : JavaPlugin() {
 
     override fun onEnable() {
-        logger.info("FreiheitPlugin activated!")
+        logger.info("Freedom Plugin activated!")
+
+        // Save the default configuration if not present
         saveDefaultConfig()
 
-        val worldBarrierManager = WorldBarrierManager(this)
-        worldBarrierManager.initializeWorldBorder()
-        worldBarrierManager.scheduleSmoothBorderUpdates()
+        val freedomManager = FreedomManager(this)
 
-        registerCommands(worldBarrierManager)
+        // Заморожуємо рендеринг для світу
+        val worldName = config.getString("world", "world")
+        if (freedomManager.isBlueMapIntegrationEnabled()) {
+            logger.info("Attempting to freeze BlueMap...")
+            if (worldName != null) {
+                freedomManager.freezeBlueMap(worldName)
+            }
+        } else {
+            logger.info("BlueMap integration is disabled in the configuration.")
+        }
+
+        // Initialize the world border from configuration
+        freedomManager.initializeWorldBorder()
+
+        // Schedule automatic updates
+        freedomManager.scheduleSmoothBorderUpdates()
+
+        // Register commands
+        registerCommands(freedomManager)
+
+
     }
+
 
     override fun onDisable() {
-        logger.info("FreiheitPlugin deactivated!")
+        saveConfig() // Ensure all changes to the config are saved
+        logger.info("Freedom Plugin deactivated!")
     }
 
-    private fun registerCommands(worldBarrierManager: WorldBarrierManager) {
-        getCommand("worldbarrier")?.setExecutor(WorldBarrierCommand(worldBarrierManager))
+    private fun registerCommands(freedomManager: FreedomManager) {
+        val command = getCommand("freedom")
+        if (command != null) {
+            command.setExecutor(FreedomCommand(freedomManager))
+            command.tabCompleter = FreedomTabCompleter() // Add tab completer here
+        }
     }
 }
