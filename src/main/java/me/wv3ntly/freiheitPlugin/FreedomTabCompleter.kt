@@ -13,7 +13,7 @@ class FreedomTabCompleter : TabCompleter {
     ): List<String>? {
         if (command.name.equals("freedom", ignoreCase = true)) {
             return when (args.size) {
-                1 -> listOf("restore", "debug").filter { it.startsWith(args[0], ignoreCase = true) }
+                1 -> listOf("restore", "debug", "render").filter { it.startsWith(args[0], ignoreCase = true) }
                 else -> null
             }
         }

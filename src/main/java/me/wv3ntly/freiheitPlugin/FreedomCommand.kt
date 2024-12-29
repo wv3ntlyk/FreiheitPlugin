@@ -27,7 +27,7 @@ class FreedomCommand(private val freedomManager: FreedomManager) : CommandExecut
                 sender.sendMessage("§6==============================")
             }
             "render" -> {
-                freedomManager.triggerBlueMapUpdate()
+                // freedomManager.triggerBlueMapUpdate()
                 sender.sendMessage("§aBlueMap update triggered for current world border area.")
             }
 
